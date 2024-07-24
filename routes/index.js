@@ -2,8 +2,8 @@ import express from "express";
 import { getStudio, getStudioById, createStudio, updateStudio, deleteStudio } from "../controllers/StudioModel.js";
 import { getUsers, Register, Login, Logout } from "../controllers/Users.js";
 import { verifyToken, authorizeRole } from "../middleware/VerifyToken.js";
-import { createPemesanan, getPemesanan, getPemesananById, updatePemesanan, deletePemesanan, getBookingsForStudio,getPemesananByUserId } from "../controllers/PemesananController.js";
-import { getPembayaran, getPembayaranById, createPembayaran, updatePembayaran, deletePembayaran, createPayment,getNotification,cancelPembayaran } from "../controllers/PembayaranController.js";
+import { createPemesanan, getPemesanan, getPemesananById, updatePemesanan, deletePemesanan, getBookingsForStudio, getPemesananByUserId } from "../controllers/PemesananController.js";
+import { getPembayaran, getPembayaranById, createPembayaran, updatePembayaran, deletePembayaran, createPayment, getNotification, cancelPembayaran } from "../controllers/PembayaranController.js";
 // import { refreshToken } from "../controller/RefreshToken.js";
 
 const router = express.Router();
@@ -29,7 +29,7 @@ router.get("/pemesanan", getPemesanan);
 router.get("/pemesanan/:id", getPemesananById);
 router.put("/pemesanan/:id", updatePemesanan);
 router.delete("/pemesanan/:id", deletePemesanan);
-router.post("/pembayaran/cancel/:id", cancelPembayaran); 
+router.post("/pembayaran/cancel/:id", cancelPembayaran);
 
 //route pembayaran
 router.get("/pembayaran", getPembayaran);
@@ -46,5 +46,6 @@ router.post("/api/notification", getNotification);
 
 // Tambahkan rute untuk mendapatkan riwayat pemesanan berdasarkan userId
 router.get("/pemesanan/user/:userId", getPemesananByUserId);
+router.get('/', (req, res) => res.status(200).json({ status: "OK", code: 200, message: "Hello from Yeabe 🔥️🔥️🔥️" }));
 
 export default router;

@@ -5,6 +5,8 @@ import { verifyToken, authorizeRole } from "../middleware/VerifyToken.js";
 import { createPemesanan, getPemesanan, getPemesananById, updatePemesanan, deletePemesanan, getBookingsForStudio,getPemesananByUserId } from "../controllers/PemesananController.js";
 import { getPembayaran, getPembayaranById, createPembayaran, updatePembayaran, deletePembayaran, createPayment,getNotification,cancelPembayaran } from "../controllers/PembayaranController.js";
 // import { refreshToken } from "../controller/RefreshToken.js";
+import controllers from "../controllers/api/index.js";
+import { onError, onLost } from "../controllers/api/main.js";
 
 const router = express.Router();
 
@@ -46,5 +48,13 @@ router.post("/api/notification", getNotification);
 
 // Tambahkan rute untuk mendapatkan riwayat pemesanan berdasarkan userId
 router.get("/pemesanan/user/:userId", getPemesananByUserId);
+
+router.get("/api/errors", () => {
+    throw new Error(
+        "The Industrial Revolution and its consequences have been a disaster for the human race."
+    );
+});
+router.use(onLost);
+router.use(onError);
 
 export default router;
